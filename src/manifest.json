@@ -12,7 +12,7 @@
     "default_popup": "popup.html"
   },
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"]
   },
   "commands": {
     "toggle-ink-style": {
@@ -24,28 +24,22 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "*://*/*"
-      ],
-      "js": [
-        "inject.js"
-      ],
-      "css": [
-        "css/base.css"
-      ]
+      "matches": ["*://*/*"],
+      "js": ["inject.js"],
+      "css": ["css/base.css"]
     },
     {
-      "matches": [
-        "https://github.com/*"
-      ],
+      "matches": ["https://github.com/*"],
       "js": [],
-      "css": [
-        "css/github.com.css"
-      ]
+      "css": ["css/github.com.css"]
     }
   ],
-  "permissions": [
-    "activeTab",
-    "storage"
-  ]
+  "permissions": ["activeTab", "storage"],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "einkviewable@nestor.extensions",
+      "strict_min_version": "109.0"
+    }
+  }
 }

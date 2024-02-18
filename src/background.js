@@ -1,6 +1,6 @@
-chrome.commands.onCommand.addListener((command) => {
+browser.commands.onCommand.addListener((command) => {
     if (command === 'toggle-ink-style') {
-        chrome.tabs.query(
+        browser.tabs.query(
             {
                 active: true,
                 currentWindow: true
@@ -9,7 +9,7 @@ chrome.commands.onCommand.addListener((command) => {
                 const tab = tabs[0]
                 const host = new URL(tab.url).host
                 const key = `i:${host}`
-                chrome.storage.sync.get([key], function (items) {
+                browser.storage.sync.get([key], function (items) {
                     const obj = {}
                     let paused = items[key]
                     if (paused) {
@@ -17,8 +17,8 @@ chrome.commands.onCommand.addListener((command) => {
                     } else {
                         obj[key] = 1
                     }
-                    chrome.storage.sync.set(obj)
-                    chrome.tabs.sendMessage(
+                    browser.storage.sync.set(obj)
+                    browser.tabs.sendMessage(
                         tab.id, 'reload'
                     )
                 })

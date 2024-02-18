@@ -78,7 +78,7 @@ function updateStyle(node) {
     }
 }
 
-chrome.storage.sync.get([`i:${window.location.host}`], function (items) {
+browser.storage.sync.get([`i:${window.location.host}`], function (items) {
     let paused = items[`i:${window.location.host}`]
     if (!paused) {
         document.querySelectorAll('*').forEach((node) => {
@@ -100,7 +100,7 @@ chrome.storage.sync.get([`i:${window.location.host}`], function (items) {
     }
 })
 
-chrome.runtime.onMessage.addListener(function (request) {
+browser.runtime.onMessage.addListener(function (request) {
     if (request === 'reload') {
         window.location.reload()
     }
